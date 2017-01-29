@@ -6,3 +6,6 @@ node_modules/
 platforms/
 plugins/
 .idea/
+www/**/*.css
+www/**/*.js
+www/**/*.map
