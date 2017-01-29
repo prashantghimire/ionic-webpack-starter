@@ -1,3 +1,5 @@
 module.exports = function (mod) {
-  mod.config();
+  mod.config(function ($urlRouterProvider) {
+    $urlRouterProvider.otherwise('/home');
+  });
 };

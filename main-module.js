@@ -5,7 +5,7 @@
     ];
 
     var modules = [
-        {package: require('./src/pages/bundle')}
+        {package: require('./src/bundle')}
     ];
 
     modules.forEach(function (mod, index) {
