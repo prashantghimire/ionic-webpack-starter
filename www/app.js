@@ -76,13 +76,32 @@
 
 /***/ },
 /* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = function (mod) {
+	  mod
+	    .config(function ($stateProvider, $urlRouterProvider) {
+	
+	      $urlRouterProvider.otherwise('/home');
+	
+	      $stateProvider
+	        .state('home', {
+	          url: '/home',
+	          template: __webpack_require__(3),
+	          controller: 'HomeCtrl as vm'
+	        })
+	    })
+	    .controller('HomeCtrl', function () {
+	      console.log('web-pack built file');
+	    });
+	};
+
+
+/***/ },
+/* 3 */
 /***/ function(module, exports) {
 
-	module.exports = function (mod){
-		mod.run(function (){
-			console.log('web-pack built file');
-		});
-	};
+	module.exports = "<ion-view>\n  <ion-nav-bar>\n    <ion-nav-title>Hello World</ion-nav-title>\n  </ion-nav-bar>\n\n\n  <ion-content>\n    <h1>Hello there!</h1>\n  </ion-content>\n\n</ion-view>\n";
 
 /***/ }
 /******/ ]);

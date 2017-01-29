@@ -9,36 +9,38 @@ var sh = require('shelljs');
 var webpack = require('webpack-stream');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  srcJS: ['./src/**/*.js'],
+  srcHTML: ['./src/**/*.html']
 };
 
 gulp.task('default', ['sass']);
 
-gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
+gulp.task('sass', function (done) {
+  gulp.src('./scss/bundle.scss')
     .pipe(sass())
     .on('error', sass.logError)
     .pipe(gulp.dest('./www/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
-    .pipe(rename({ extname: '.min.css' }))
+    .pipe(rename({extname: '.min.css'}))
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
 });
 
-gulp.task('watch', ['sass'], function() {
+gulp.task('watch', ['sass'], function () {
   gulp.watch(paths.sass, ['sass']);
 });
 
-gulp.task('install', ['git-check'], function() {
+gulp.task('install', ['git-check'], function () {
   return bower.commands.install()
-    .on('log', function(data) {
+    .on('log', function (data) {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
 });
 
-gulp.task('git-check', function(done) {
+gulp.task('git-check', function (done) {
   if (!sh.which('git')) {
     console.log(
       '  ' + gutil.colors.red('Git is not installed.'),
@@ -51,8 +53,19 @@ gulp.task('git-check', function(done) {
   done();
 });
 
-gulp.task('build', function (){
+gulp.task('build', function () {
   return gulp.src('./main-module.js')
-  .pipe(webpack(require("./webpack.config.js")))
-        .pipe(gulp.dest("./www"));
+    .pipe(webpack(require("./webpack.config.js")))
+    .pipe(gulp.dest("./www"));
+});
+
+gulp.task('lib', function () {
+
+  var libSources = [
+    'bower_components/ionic/js/ionic.bundle.js'
+  ];
+
+  gulp.src(libSources)
+    .pipe(concat('lib.js'))
+    .pipe(gulp.dest('./www'));
 });
