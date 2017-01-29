@@ -31,6 +31,8 @@ gulp.task('sass', function (done) {
 
 gulp.task('watch', ['sass'], function () {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.srcJS, ['build']);
+  gulp.watch(paths.srcHTML, ['build']);
 });
 
 gulp.task('install', ['git-check'], function () {

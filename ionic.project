@@ -1,4 +1,9 @@
 {
   "name": "scenehound",
-  "app_id": ""
+  "app_id": "scenehound",
+  "gulpStartupTasks": [
+      "sass",
+      "build",
+      "watch"
+    ]
 }
