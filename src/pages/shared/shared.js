@@ -5,11 +5,10 @@ module.exports = function (mod) {
         url: '/app',
         abstract: true,
         template: require('./shared.html'),
-        controller: 'HomeCtrl as vm'
+        controller: 'SharedCtrl as vm'
       });
     })
-    .controller('HomeCtrl', function ($scope, $ionicModal, $timeout) {
-      console.log('web-pack built file');
+    .controller('SharedCtrl', function ($scope, $ionicModal, $timeout) {
 
       $scope.loginData = {};
 
