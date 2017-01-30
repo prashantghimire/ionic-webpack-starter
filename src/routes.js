@@ -1,5 +1,6 @@
 module.exports = function (mod) {
-  mod.config(function ($urlRouterProvider) {
-    $urlRouterProvider.otherwise('/home');
-  });
+  mod
+    .config(function ($stateProvider, $urlRouterProvider) {
+      $urlRouterProvider.otherwise('/app/playlists');
+    });
 };
