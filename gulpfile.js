@@ -14,27 +14,6 @@ var paths = {
   srcHTML: ['./src/**/*.html']
 };
 
-gulp.task('default', ['sass']);
-
-gulp.task('sass', function (done) {
-  gulp.src('./scss/bundle.scss')
-    .pipe(sass())
-    .on('error', sass.logError)
-    .pipe(gulp.dest('./www/css/'))
-    .pipe(minifyCss({
-      keepSpecialComments: 0
-    }))
-    .pipe(rename({extname: '.min.css'}))
-    .pipe(gulp.dest('./www/css/'))
-    .on('end', done);
-});
-
-gulp.task('watch', ['sass'], function () {
-  gulp.watch(paths.sass, ['sass']);
-  gulp.watch(paths.srcJS, ['build']);
-  gulp.watch(paths.srcHTML, ['build']);
-});
-
 gulp.task('install', ['git-check'], function () {
   return bower.commands.install()
     .on('log', function (data) {
@@ -55,6 +34,19 @@ gulp.task('git-check', function (done) {
   done();
 });
 
+gulp.task('sass', function (done) {
+  gulp.src('./scss/bundle.scss')
+    .pipe(sass())
+    .on('error', sass.logError)
+    .pipe(gulp.dest('./www/css/'))
+    .pipe(minifyCss({
+      keepSpecialComments: 0
+    }))
+    .pipe(rename({extname: '.min.css'}))
+    .pipe(gulp.dest('./www/css/'))
+    .on('end', done);
+});
+
 gulp.task('build', function () {
   return gulp.src('./main-module.js')
     .pipe(webpack(require("./webpack.config.js")))
@@ -71,3 +63,11 @@ gulp.task('lib', function () {
     .pipe(concat('lib.js'))
     .pipe(gulp.dest('./www'));
 });
+
+gulp.task('watch', ['sass'], function () {
+  gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.srcJS, ['build']);
+  gulp.watch(paths.srcHTML, ['build']);
+});
+
+gulp.task('serve:before', ['sass', 'build', 'watch']);
