@@ -119,7 +119,7 @@
 /* 5 */
 /***/ function(module, exports) {
 
-	module.exports = "<ion-view>\n\n  <ion-nav-bar>\n    <ion-nav-title>Hello World :)</ion-nav-title>\n  </ion-nav-bar>\n\n  <ion-content>\n    <h1>Hello there!\n      <i class=\"icon ion-ionic\"></i>\n    </h1>\n  </ion-content>\n\n</ion-view>\n";
+	module.exports = "<ion-view>\n\n  <ion-nav-bar>\n    <ion-nav-title>Ionic-Webpack Starter</ion-nav-title>\n  </ion-nav-bar>\n\n  <ion-content padding=\"true\">\n    <h1 class=\"text-center\">Welcome to Ionic! <i class=\"icon ion-ionic positive\"></i></h1>\n  </ion-content>\n\n  <ion-footer-bar>\n    <h1 class=\"title\">\n      Built with <i class=\"icon ion-heart assertive\"></i> using Webpack!\n    </h1>\n  </ion-footer-bar>\n\n</ion-view>\n";
 
 /***/ }
 /******/ ]);
